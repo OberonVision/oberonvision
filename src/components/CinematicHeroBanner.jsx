@@ -130,17 +130,15 @@ export const CinematicHeroBanner = () => {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="cinematic-hero-wrapper"
+      className="cinematic-hero-wrapper hero-banner-media"
       style={{
         position: 'relative',
         width: '100%',
-        aspectRatio: '16 / 10',
-        minHeight: '360px',
-        maxHeight: '520px',
-        margin: '0 auto',
+        height: 'auto',
+        aspectRatio: '16 / 9',
         overflow: 'hidden',
         backgroundColor: '#040706',
-        borderRadius: '24px',
+        borderRadius: '16px',
         boxShadow: isDark
           ? '0 25px 60px rgba(0, 0, 0, 0.85), 0 0 0 1px var(--border-color), 0 0 30px var(--glow-accent)'
           : '0 20px 50px rgba(10, 36, 26, 0.18), 0 0 0 1px rgba(10, 36, 26, 0.15)',
@@ -214,8 +212,8 @@ export const CinematicHeroBanner = () => {
         className="banner-controls-strip"
         style={{
           position: 'absolute',
-          top: '16px',
-          right: '16px',
+          top: '14px',
+          right: '14px',
           zIndex: 10,
           display: 'flex',
           alignItems: 'center',
@@ -231,8 +229,8 @@ export const CinematicHeroBanner = () => {
             display: 'inline-flex',
             alignItems: 'center',
             justifyContent: 'center',
-            width: '38px',
-            height: '38px',
+            width: '36px',
+            height: '36px',
             borderRadius: '50%',
             background: 'rgba(5, 10, 8, 0.75)',
             backdropFilter: 'blur(10px)',
@@ -244,7 +242,7 @@ export const CinematicHeroBanner = () => {
             transition: 'all 0.2s ease',
           }}
         >
-          {isPlaying ? <Pause size={15} /> : <Play size={15} style={{ marginLeft: '2px' }} />}
+          {isPlaying ? <Pause size={14} /> : <Play size={14} style={{ marginLeft: '2px' }} />}
         </button>
 
         {/* Audio Mute/Unmute Button */}
@@ -256,8 +254,8 @@ export const CinematicHeroBanner = () => {
             display: 'inline-flex',
             alignItems: 'center',
             justifyContent: 'center',
-            width: '38px',
-            height: '38px',
+            width: '36px',
+            height: '36px',
             borderRadius: '50%',
             background: 'rgba(5, 10, 8, 0.75)',
             backdropFilter: 'blur(10px)',
@@ -269,36 +267,20 @@ export const CinematicHeroBanner = () => {
             transition: 'all 0.2s ease',
           }}
         >
-          {isMuted ? <VolumeX size={15} /> : <Volume2 size={15} />}
+          {isMuted ? <VolumeX size={14} /> : <Volume2 size={14} />}
         </button>
       </div>
 
       {/* Responsive Styles tailored for Split Column & Mobile View */}
       <style>{`
-        @media (max-width: 1024px) {
-          .cinematic-hero-wrapper {
-            aspect-ratio: 16 / 10 !important;
-            min-height: 320px !important;
-          }
-        }
-
         @media (max-width: 768px) {
           .cinematic-hero-wrapper {
-            aspect-ratio: 4 / 3 !important;
-            min-height: 260px !important;
-            border-radius: 20px !important;
+            aspect-ratio: 16 / 9 !important;
+            border-radius: 16px !important;
           }
           .banner-controls-strip {
-            top: 12px !important;
-            right: 12px !important;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .cinematic-hero-wrapper {
-            aspect-ratio: 1 / 1 !important;
-            min-height: 240px !important;
-            border-radius: 18px !important;
+            top: 10px !important;
+            right: 10px !important;
           }
         }
       `}</style>

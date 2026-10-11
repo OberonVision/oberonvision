@@ -1,0 +1,242 @@
+/* ==========================================================================
+   Hero Section Component Stylesheet
+   Mobile-First Architecture & Fluid Responsive Scaling
+   ========================================================================== */
+
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  padding-top: 96px;
+  padding-bottom: 60px;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--bg-primary) 0%, rgba(10, 20, 18, 0.4) 100%);
+}
+
+/* Base Mobile & Layout Container */
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 16px;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Left Content Column */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Banner Media Container (16:9 Aspect Ratio) */
+.hero-banner-media {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 0 1px var(--border-color), 0 0 25px var(--glow-accent);
+}
+
+/* Typography Hierarchy */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 30px;
+  background: rgba(216, 183, 122, 0.12);
+  border: 1px solid var(--border-color);
+  color: var(--accent-primary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  align-self: flex-start;
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.hero-title .highlight {
+  color: var(--accent-primary);
+}
+
+.hero-description {
+  font-family: var(--font-body);
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+/* Button Group & Buttons */
+.button-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.btn-primary {
+  background: var(--accent-primary);
+  color: var(--text-on-accent);
+  box-shadow: 0 8px 24px var(--glow-accent);
+  border: 1px solid transparent;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px var(--glow-accent);
+}
+
+.btn-whatsapp {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.btn-whatsapp:hover {
+  background: rgba(16, 185, 129, 0.25);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+}
+
+/* Trust / Feature Strip */
+.hero-trust-strip {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.hero-trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ==========================================================================
+   Desktop View (768px and above)
+   ========================================================================== */
+@media (min-width: 768px) {
+  .hero-container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+    padding: 0 24px;
+  }
+
+  .hero-content, 
+  .hero-banner-media {
+    flex: 1;
+  }
+
+  .hero-title {
+    font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+    text-align: left;
+  }
+
+  .hero-description {
+    font-size: clamp(1rem, 1.6vw, 1.15rem);
+    text-align: left;
+    max-width: 560px;
+  }
+
+  .button-group {
+    justify-content: flex-start;
+  }
+}
+
+/* ==========================================================================
+   Mobile View Adjustments (Under 768px)
+   ========================================================================== */
+@media (max-width: 767px) {
+  .hero-section {
+    padding-top: 76px;
+    padding-bottom: 40px;
+  }
+
+  .hero-badge {
+    align-self: center;
+  }
+
+  .hero-title {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .hero-description {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .button-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  .hero-trust-strip {
+    justify-content: center;
+  }
+
+  .hero-metrics-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-metrics-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
