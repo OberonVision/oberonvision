@@ -1,4 +1,4 @@
-import { useState, Fragment } from 'react';
+import { useState } from 'react';
 import {
   Globe,
   Smartphone,
@@ -21,16 +21,16 @@ export const Services = () => {
   const servicesData = [
     {
       id: 'web',
-      icon: <Globe size={28} />,
+      icon: <Globe size={26} />,
       title: 'Web Development',
-      shortDesc: 'Clean, responsive websites & online platforms optimized for reach and search visibility.',
+      shortDesc: 'Clean, responsive websites & online platforms optimized for reach, high speed & search visibility.',
       fullDesc:
         'We build professional websites that give your business a stronger digital presence. From business websites and landing pages to complete online platforms, we focus on clean design, responsive performance and a smooth customer experience. We can also assist with hosting, deployment and SEO foundations so your website is ready to reach the right audience.',
       highlights: ['Responsive Frontend & CMS', 'SEO Foundations & Speed Optimization', 'Custom Domain & Hosting Setup'],
     },
     {
       id: 'mobile',
-      icon: <Smartphone size={28} />,
+      icon: <Smartphone size={26} />,
       title: 'Mobile App Development',
       shortDesc: 'Intuitive mobile applications for iOS & Android built for practical real-world usage.',
       fullDesc:
@@ -39,7 +39,7 @@ export const Services = () => {
     },
     {
       id: 'uiux',
-      icon: <Palette size={28} />,
+      icon: <Palette size={26} />,
       title: 'UI / UX Design',
       shortDesc: 'Human-centered visual interfaces designed around clarity, usability, and user behavior.',
       fullDesc:
@@ -49,7 +49,7 @@ export const Services = () => {
     },
     {
       id: 'analytics',
-      icon: <BarChart3 size={28} />,
+      icon: <BarChart3 size={26} />,
       title: 'Data Analytics',
       shortDesc: 'Transform raw data into meaningful visual insights and actionable business decisions.',
       fullDesc:
@@ -59,7 +59,7 @@ export const Services = () => {
     },
     {
       id: 'marketing',
-      icon: <Megaphone size={28} />,
+      icon: <Megaphone size={26} />,
       title: 'Digital Marketing',
       shortDesc: 'Strengthen online visibility through social media, search optimization, and lead generation.',
       fullDesc:
@@ -68,7 +68,7 @@ export const Services = () => {
     },
     {
       id: 'creative',
-      icon: <Paintbrush size={28} />,
+      icon: <Paintbrush size={26} />,
       title: 'Creative & Freelance Services',
       shortDesc: 'Flexible creative assets including graphic design, video editing, photography & branding.',
       fullDesc:
@@ -78,14 +78,14 @@ export const Services = () => {
   ];
 
   return (
-    <section id="services" style={{ padding: '100px 0', background: 'var(--bg-secondary)' }}>
+    <section id="services" style={{ padding: '80px 0', background: 'var(--bg-secondary)' }} className="services-section">
       <div className="container">
         <div style={{ textAlign: 'center', margin: '0 auto', maxWidth: '720px' }}>
           <div className="section-badge" style={{ justifyContent: 'center' }}>
             What We Do
           </div>
           <h2 className="section-title">Digital Solutions Built Around Your Business</h2>
-          <p className="section-subtitle" style={{ margin: '0 auto 56px' }}>
+          <p className="section-subtitle" style={{ margin: '0 auto 40px' }}>
             Digital solutions designed around your business, your customers and your goals.
           </p>
         </div>
@@ -93,37 +93,38 @@ export const Services = () => {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
-            gap: '28px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))',
+            gap: '20px',
             alignItems: 'start',
           }}
+          className="services-grid"
         >
           {servicesData.map((svc, index) => {
             const isOpen = activeService === index;
             return (
               <div
                 key={svc.id}
-                className="glass-panel interactive-card"
+                className="glass-panel interactive-card service-card"
                 onClick={() => toggleService(index)}
                 style={{
-                  padding: '32px',
+                  padding: '28px 24px',
                   cursor: 'pointer',
                   borderRadius: 'var(--theme-border-radius)',
                   background: isOpen ? 'var(--bg-card-hover)' : 'var(--bg-card)',
                   borderColor: isOpen ? 'var(--border-active)' : 'var(--border-color)',
                   boxShadow: isOpen ? 'var(--card-shadow-hover)' : 'var(--card-shadow)',
-                  transform: isOpen ? 'translateY(-4px)' : 'none',
-                  transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+                  transform: isOpen ? 'translateY(-2px)' : 'none',
+                  transition: 'all 0.3s ease',
                   position: 'relative',
                   overflow: 'hidden',
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
                   <div
                     style={{
-                      width: '54px',
-                      height: '54px',
-                      borderRadius: '16px',
+                      width: '48px',
+                      height: '48px',
+                      borderRadius: '14px',
                       background: 'rgba(49, 90, 71, 0.15)',
                       color: 'var(--accent-primary)',
                       display: 'flex',
@@ -137,8 +138,8 @@ export const Services = () => {
                   </div>
                   <div
                     style={{
-                      width: '36px',
-                      height: '36px',
+                      width: '32px',
+                      height: '32px',
                       borderRadius: '50%',
                       background: isOpen ? 'var(--accent-primary)' : 'var(--bg-secondary)',
                       color: isOpen ? 'var(--text-on-accent)' : 'var(--text-secondary)',
@@ -149,77 +150,93 @@ export const Services = () => {
                       transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
                     }}
                   >
-                    <ChevronDown size={20} />
+                    <ChevronDown size={18} />
                   </div>
                 </div>
 
-                <h3 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: '12px', color: 'var(--text-primary)' }}>
+                <h3 style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: '8px', color: 'var(--text-primary)' }}>
                   {svc.title}
                 </h3>
-                <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '16px' }}>
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.55, marginBottom: '16px' }}>
                   {svc.shortDesc}
                 </p>
 
+                {/* Highlights Pills */}
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: isOpen ? '16px' : '0' }}>
+                  {svc.highlights.map((h, i) => (
+                    <span
+                      key={i}
+                      style={{
+                        fontSize: '0.74rem',
+                        fontWeight: 600,
+                        padding: '4px 10px',
+                        borderRadius: '12px',
+                        background: 'rgba(255, 255, 255, 0.04)',
+                        border: '1px solid var(--border-color)',
+                        color: 'var(--text-secondary)',
+                      }}
+                    >
+                      {h}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Expanded Details */}
                 {isOpen && (
                   <div
                     style={{
-                      marginTop: '20px',
-                      paddingTop: '20px',
+                      paddingTop: '16px',
+                      marginTop: '16px',
                       borderTop: '1px solid var(--border-color)',
-                      animation: 'fadeIn 0.4s ease-out',
+                      animation: 'fadeIn 0.25s ease',
                     }}
                   >
-                    <p style={{ fontSize: '0.925rem', color: 'var(--text-primary)', lineHeight: 1.7, marginBottom: '20px' }}>
+                    <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '16px' }}>
                       {svc.fullDesc}
                     </p>
 
                     {svc.process && (
-                      <div style={{ marginBottom: '20px' }}>
-                        <h4
-                          style={{
-                            fontSize: '0.8rem',
-                            fontWeight: 700,
-                            textTransform: 'uppercase',
-                            letterSpacing: '0.08em',
-                            color: 'var(--accent-secondary)',
-                            marginBottom: '10px',
-                          }}
-                        >
-                          Execution Process:
-                        </h4>
-                        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '6px', fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-primary)' }}>
+                      <div style={{ marginBottom: '16px' }}>
+                        <div style={{ fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--accent-primary)', marginBottom: '8px' }}>
+                          Process Workflow:
+                        </div>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                           {svc.process.map((step, sIdx) => (
-                            <Fragment key={step}>
-                              <span style={{ padding: '4px 10px', borderRadius: '12px', background: 'var(--bg-secondary)', border: '1px solid var(--border-color)' }}>
-                                {step}
-                              </span>
-                              {sIdx < svc.process.length - 1 && (
-                                <span style={{ color: 'var(--accent-primary)', fontSize: '0.75rem' }}>→</span>
-                              )}
-                            </Fragment>
+                            <span
+                              key={sIdx}
+                              style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '4px',
+                                fontSize: '0.74rem',
+                                padding: '3px 8px',
+                                borderRadius: '8px',
+                                background: 'var(--bg-secondary)',
+                                border: '1px solid var(--border-color)',
+                                color: 'var(--text-primary)',
+                              }}
+                            >
+                              <CheckCircle2 size={11} style={{ color: 'var(--accent-highlight)' }} /> {step}
+                            </span>
                           ))}
                         </div>
                       </div>
                     )}
 
-                    <ul style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '20px' }}>
-                      {svc.highlights.map((item) => (
-                        <li key={item} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                          <CheckCircle2 size={16} style={{ color: 'var(--accent-primary)', flexShrink: 0 }} />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.9rem', fontWeight: 700, color: 'var(--accent-primary)' }}>
-                      Discuss This Service <ArrowUpRight size={16} />
-                    </div>
-                  </div>
-                )}
-
-                {!isOpen && (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem', fontWeight: 600, color: 'var(--accent-primary)', marginTop: '8px' }}>
-                    Click to Expand <ArrowUpRight size={14} />
+                    <a
+                      href="#contact"
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        fontSize: '0.85rem',
+                        fontWeight: 700,
+                        color: 'var(--accent-primary)',
+                        paddingTop: '4px',
+                      }}
+                    >
+                      Inquire About {svc.title} <ArrowUpRight size={15} />
+                    </a>
                   </div>
                 )}
               </div>
@@ -229,9 +246,17 @@ export const Services = () => {
       </div>
 
       <style>{`
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(8px); }
-          to { opacity: 1; transform: translateY(0); }
+        @media (max-width: 768px) {
+          .services-section {
+            padding: 50px 0 !important;
+          }
+          .services-grid {
+            grid-template-columns: 1fr !important;
+            gap: 14px !important;
+          }
+          .service-card {
+            padding: 20px 18px !important;
+          }
         }
       `}</style>
     </section>

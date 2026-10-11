@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Sparkles, Phone, Mail, Send, CheckCircle2 } from 'lucide-react';
+import { Sparkles, Phone, Mail, Send, CheckCircle2, MessageSquare } from 'lucide-react';
 
 export const Contact = () => {
   const [formData, setFormData] = useState({
@@ -19,7 +19,7 @@ export const Contact = () => {
     setTimeout(() => {
       setLoading(false);
       setSubmitted(true);
-    }, 800);
+    }, 600);
   };
 
   const handleReset = () => {
@@ -34,13 +34,13 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" style={{ padding: '110px 0', background: 'var(--bg-secondary)', position: 'relative' }}>
+    <section id="contact" style={{ padding: '80px 0', background: 'var(--bg-secondary)', position: 'relative' }} className="contact-section">
       <div className="container">
         <div
           style={{
             display: 'grid',
             gridTemplateColumns: '1fr 1.2fr',
-            gap: '64px',
+            gap: '48px',
             alignItems: 'start',
           }}
           className="contact-grid"
@@ -50,16 +50,17 @@ export const Contact = () => {
               <Sparkles size={14} /> Get In Touch
             </div>
             <h2 className="section-title">Let&apos;s Build Something Together.</h2>
-            <p style={{ fontSize: '1.05rem', color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: '40px' }}>
+            <p style={{ fontSize: 'clamp(0.95rem, 2.5vw, 1.05rem)', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '32px' }}>
               Have an idea, a business challenge or simply a project you would like to explore? Tell us what you have in
               mind. We&apos;ll take the time to understand your requirements and discuss how we can move forward.
             </p>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '36px' }}>
+            {/* Founder Spotlight Cards */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '28px' }} className="founders-grid">
               <div
                 className="glass-panel"
                 style={{
-                  padding: '20px',
+                  padding: '16px',
                   borderRadius: '16px',
                   background: 'var(--bg-card)',
                   border: '1px solid var(--border-color)',
@@ -67,7 +68,7 @@ export const Contact = () => {
               >
                 <div
                   style={{
-                    fontSize: '0.75rem',
+                    fontSize: '0.72rem',
                     fontWeight: 700,
                     textTransform: 'uppercase',
                     color: 'var(--accent-secondary)',
@@ -76,13 +77,13 @@ export const Contact = () => {
                 >
                   Founder &amp; CEO
                 </div>
-                <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--text-primary)' }}>JEGAJEEVAN</div>
+                <div style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--text-primary)' }}>SURIYANARAYANAN</div>
               </div>
 
               <div
                 className="glass-panel"
                 style={{
-                  padding: '20px',
+                  padding: '16px',
                   borderRadius: '16px',
                   background: 'var(--bg-card)',
                   border: '1px solid var(--border-color)',
@@ -90,7 +91,7 @@ export const Contact = () => {
               >
                 <div
                   style={{
-                    fontSize: '0.75rem',
+                    fontSize: '0.72rem',
                     fontWeight: 700,
                     textTransform: 'uppercase',
                     color: 'var(--accent-secondary)',
@@ -99,63 +100,78 @@ export const Contact = () => {
                 >
                   Co Founder
                 </div>
-                <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--text-primary)' }}>ADITHYA</div>
+                <div style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--text-primary)' }}>ADITHYA</div>
               </div>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            {/* Mobile Direct Action Buttons */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '24px' }}>
               <a
                 href="tel:8072935820"
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '16px',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  padding: '12px',
+                  borderRadius: '14px',
+                  background: 'var(--bg-card)',
+                  border: '1px solid var(--border-color)',
                   color: 'var(--text-primary)',
-                  fontSize: '1rem',
-                  fontWeight: 600,
+                  fontWeight: 700,
+                  fontSize: '0.88rem',
                 }}
               >
-                <div
-                  style={{
-                    width: '44px',
-                    height: '44px',
-                    borderRadius: '12px',
-                    background: 'rgba(49, 90, 71, 0.15)',
-                    color: 'var(--accent-primary)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <Phone size={20} />
-                </div>
-                8072935820
+                <Phone size={16} style={{ color: 'var(--accent-primary)' }} /> Call Directly
               </a>
+              <a
+                href="https://wa.me/918072935820?text=Hi%20OberonVision%2C%20I%20would%20like%20to%20discuss%20a%20project"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  padding: '12px',
+                  borderRadius: '14px',
+                  background: 'rgba(16, 185, 129, 0.12)',
+                  border: '1px solid rgba(16, 185, 129, 0.4)',
+                  color: '#10b981',
+                  fontWeight: 700,
+                  fontSize: '0.88rem',
+                }}
+              >
+                <MessageSquare size={16} /> WhatsApp Chat
+              </a>
+            </div>
 
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
               <a
                 href="mailto:oberonvison.tech@gmail.com"
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '16px',
+                  gap: '12px',
                   color: 'var(--text-primary)',
-                  fontSize: '1rem',
+                  fontSize: '0.92rem',
                   fontWeight: 600,
                 }}
               >
                 <div
                   style={{
-                    width: '44px',
-                    height: '44px',
-                    borderRadius: '12px',
+                    width: '38px',
+                    height: '38px',
+                    borderRadius: '10px',
                     background: 'rgba(49, 90, 71, 0.15)',
                     color: 'var(--accent-primary)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
+                    flexShrink: 0,
                   }}
                 >
-                  <Mail size={20} />
+                  <Mail size={18} />
                 </div>
                 oberonvison.tech@gmail.com
               </a>
@@ -167,27 +183,28 @@ export const Contact = () => {
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '16px',
+                  gap: '12px',
                   color: 'var(--text-primary)',
-                  fontSize: '1rem',
+                  fontSize: '0.92rem',
                   fontWeight: 600,
                 }}
               >
                 <div
                   style={{
-                    width: '44px',
-                    height: '44px',
-                    borderRadius: '12px',
+                    width: '38px',
+                    height: '38px',
+                    borderRadius: '10px',
                     background: 'rgba(49, 90, 71, 0.15)',
                     color: 'var(--accent-primary)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
+                    flexShrink: 0,
                   }}
                 >
                   <svg
-                    width="20"
-                    height="20"
+                    width="18"
+                    height="18"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -205,10 +222,11 @@ export const Contact = () => {
             </div>
           </div>
 
+          {/* Contact Form */}
           <div
-            className="glass-panel"
+            className="glass-panel contact-card"
             style={{
-              padding: '44px',
+              padding: '36px 32px',
               borderRadius: '24px',
               background: 'var(--bg-card)',
               border: '1px solid var(--border-color)',
@@ -216,37 +234,38 @@ export const Contact = () => {
             }}
           >
             {submitted ? (
-              <div style={{ textAlign: 'center', padding: '40px 20px', animation: 'fadeIn 0.5s ease' }}>
+              <div style={{ textAlign: 'center', padding: '32px 16px', animation: 'fadeIn 0.4s ease' }}>
                 <div
                   style={{
-                    width: '64px',
-                    height: '64px',
+                    width: '56px',
+                    height: '56px',
                     borderRadius: '50%',
                     background: 'var(--accent-primary)',
                     color: 'var(--text-on-accent)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    margin: '0 auto 20px',
+                    margin: '0 auto 16px',
                   }}
                 >
-                  <CheckCircle2 size={32} />
+                  <CheckCircle2 size={28} />
                 </div>
-                <h3 style={{ fontSize: '1.8rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '12px' }}>
+                <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '10px' }}>
                   Enquiry Received!
                 </h3>
-                <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', marginBottom: '28px', lineHeight: 1.6 }}>
-                  Thank you for reaching out to OberonVison. Our founders will review your details and connect with you
+                <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', marginBottom: '24px', lineHeight: 1.6 }}>
+                  Thank you for reaching out to OberonVision. Our founders will review your details and connect with you
                   shortly.
                 </p>
                 <button
                   onClick={handleReset}
                   style={{
-                    padding: '12px 28px',
+                    padding: '12px 24px',
                     borderRadius: '30px',
                     background: 'var(--bg-secondary)',
                     color: 'var(--text-primary)',
                     fontWeight: 700,
+                    fontSize: '0.9rem',
                     border: '1px solid var(--border-color)',
                   }}
                 >
@@ -254,8 +273,8 @@ export const Contact = () => {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                <h3 style={{ fontSize: '1.4rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '4px' }}>
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '4px' }}>
                   Send An Enquiry
                 </h3>
 
@@ -263,7 +282,7 @@ export const Contact = () => {
                   <label
                     style={{
                       display: 'block',
-                      fontSize: '0.85rem',
+                      fontSize: '0.82rem',
                       fontWeight: 600,
                       color: 'var(--text-primary)',
                       marginBottom: '6px',
@@ -279,23 +298,22 @@ export const Contact = () => {
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     style={{
                       width: '100%',
-                      padding: '14px 16px',
+                      padding: '13px 14px',
                       borderRadius: '12px',
                       background: 'var(--bg-secondary)',
                       border: '1px solid var(--border-color)',
                       color: 'var(--text-primary)',
-                      fontSize: '0.95rem',
                       outline: 'none',
                     }}
                   />
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }} className="form-row">
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }} className="form-row">
                   <div>
                     <label
                       style={{
                         display: 'block',
-                        fontSize: '0.85rem',
+                        fontSize: '0.82rem',
                         fontWeight: 600,
                         color: 'var(--text-primary)',
                         marginBottom: '6px',
@@ -311,12 +329,11 @@ export const Contact = () => {
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       style={{
                         width: '100%',
-                        padding: '14px 16px',
+                        padding: '13px 14px',
                         borderRadius: '12px',
                         background: 'var(--bg-secondary)',
                         border: '1px solid var(--border-color)',
                         color: 'var(--text-primary)',
-                        fontSize: '0.95rem',
                         outline: 'none',
                       }}
                     />
@@ -325,7 +342,7 @@ export const Contact = () => {
                     <label
                       style={{
                         display: 'block',
-                        fontSize: '0.85rem',
+                        fontSize: '0.82rem',
                         fontWeight: 600,
                         color: 'var(--text-primary)',
                         marginBottom: '6px',
@@ -341,12 +358,11 @@ export const Contact = () => {
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       style={{
                         width: '100%',
-                        padding: '14px 16px',
+                        padding: '13px 14px',
                         borderRadius: '12px',
                         background: 'var(--bg-secondary)',
                         border: '1px solid var(--border-color)',
                         color: 'var(--text-primary)',
-                        fontSize: '0.95rem',
                         outline: 'none',
                       }}
                     />
@@ -357,7 +373,7 @@ export const Contact = () => {
                   <label
                     style={{
                       display: 'block',
-                      fontSize: '0.85rem',
+                      fontSize: '0.82rem',
                       fontWeight: 600,
                       color: 'var(--text-primary)',
                       marginBottom: '6px',
@@ -370,12 +386,11 @@ export const Contact = () => {
                     onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                     style={{
                       width: '100%',
-                      padding: '14px 16px',
+                      padding: '13px 14px',
                       borderRadius: '12px',
                       background: 'var(--bg-secondary)',
                       border: '1px solid var(--border-color)',
                       color: 'var(--text-primary)',
-                      fontSize: '0.95rem',
                       outline: 'none',
                     }}
                   >
@@ -392,7 +407,7 @@ export const Contact = () => {
                   <label
                     style={{
                       display: 'block',
-                      fontSize: '0.85rem',
+                      fontSize: '0.82rem',
                       fontWeight: 600,
                       color: 'var(--text-primary)',
                       marginBottom: '6px',
@@ -401,19 +416,18 @@ export const Contact = () => {
                     Project Details / Message
                   </label>
                   <textarea
-                    rows={4}
+                    rows={3}
                     required
-                    placeholder="Tell us about your project requirements or goals..."
+                    placeholder="Tell us about your project requirements..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     style={{
                       width: '100%',
-                      padding: '14px 16px',
+                      padding: '13px 14px',
                       borderRadius: '12px',
                       background: 'var(--bg-secondary)',
                       border: '1px solid var(--border-color)',
                       color: 'var(--text-primary)',
-                      fontSize: '0.95rem',
                       outline: 'none',
                       resize: 'none',
                     }}
@@ -427,23 +441,23 @@ export const Contact = () => {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    gap: '10px',
-                    padding: '16px',
+                    gap: '8px',
+                    padding: '15px',
                     borderRadius: '30px',
                     background: 'var(--accent-primary)',
                     color: 'var(--text-on-accent)',
                     fontWeight: 700,
-                    fontSize: '1rem',
+                    fontSize: '0.95rem',
                     boxShadow: 'var(--card-shadow)',
                     transition: 'all 0.3s ease',
-                    marginTop: '8px',
+                    marginTop: '6px',
                   }}
                 >
                   {loading ? (
                     'Sending...'
                   ) : (
                     <>
-                      Send Enquiry <Send size={18} />
+                      Send Enquiry <Send size={16} />
                     </>
                   )}
                 </button>
@@ -455,12 +469,18 @@ export const Contact = () => {
 
       <style>{`
         @media (max-width: 900px) {
+          .contact-section {
+            padding: 50px 0 !important;
+          }
           .contact-grid {
             grid-template-columns: 1fr !important;
-            gap: 40px !important;
+            gap: 32px !important;
           }
           .form-row {
             grid-template-columns: 1fr !important;
+          }
+          .contact-card {
+            padding: 24px 18px !important;
           }
         }
       `}</style>

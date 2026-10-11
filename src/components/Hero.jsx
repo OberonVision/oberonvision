@@ -1,5 +1,5 @@
 import CinematicHeroBanner from './CinematicHeroBanner';
-import { Layers, Code, Cpu, Award, ArrowRight } from 'lucide-react';
+import { Layers, Code, Cpu, Award, ArrowRight, MessageSquare } from 'lucide-react';
 
 export const Hero = () => {
   return (
@@ -8,15 +8,16 @@ export const Hero = () => {
       style={{
         position: 'relative',
         minHeight: '100vh',
-        paddingTop: '96px',
-        paddingBottom: '80px',
+        paddingTop: '88px',
+        paddingBottom: '60px',
         overflow: 'hidden',
         background: 'linear-gradient(180deg, var(--bg-primary) 0%, rgba(10, 20, 18, 0.4) 100%)',
       }}
+      className="hero-section"
     >
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-        {/* Ultra-Wide 21:9 Cinematic Hero Banner (Uncluttered, Paused at Logo Facing Area) */}
-        <div style={{ marginBottom: '40px' }}>
+        {/* Cinematic Looping Hero Video Banner */}
+        <div style={{ marginBottom: '32px' }} className="hero-banner-container">
           <CinematicHeroBanner />
         </div>
 
@@ -25,12 +26,23 @@ export const Hero = () => {
           style={{
             textAlign: 'center',
             maxWidth: '780px',
-            margin: '0 auto 48px',
+            margin: '0 auto 40px',
           }}
+          className="hero-text-block"
         >
-          <h2
+          <div
+            className="section-badge hero-pill-badge"
             style={{
-              fontSize: 'clamp(2rem, 3.8vw, 3.2rem)',
+              justifyContent: 'center',
+              marginBottom: '16px',
+            }}
+          >
+            Digital Architecture • Creative Engineering
+          </div>
+
+          <h1
+            style={{
+              fontSize: 'clamp(1.9rem, 6vw, 3.2rem)',
               fontWeight: 800,
               letterSpacing: '-0.03em',
               lineHeight: 1.15,
@@ -39,62 +51,91 @@ export const Hero = () => {
             }}
           >
             Turn Your Ideas Into <span style={{ color: 'var(--accent-primary)' }}>Digital Reality.</span>
-          </h2>
+          </h1>
           <p
             style={{
-              fontSize: 'clamp(1rem, 1.6vw, 1.15rem)',
+              fontSize: 'clamp(0.95rem, 3.2vw, 1.15rem)',
               lineHeight: 1.6,
               color: 'var(--text-secondary)',
-              marginBottom: '32px',
+              marginBottom: '28px',
+              maxWidth: '640px',
+              marginLeft: 'auto',
+              marginRight: 'auto',
             }}
           >
-            We design, develop, and deliver high-impact digital experiences that help businesses build stronger brands, connect with their customers, and scale with confidence.
+            We design, develop, and deliver high-impact digital experiences that help businesses build stronger brands,
+            connect with customers, and scale with confidence.
           </p>
 
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              gap: '12px',
+              flexWrap: 'wrap',
+            }}
+            className="hero-cta-buttons"
+          >
             <a
               href="#services"
+              className="hero-btn-primary"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '10px',
-                padding: '14px 32px',
+                justifyContent: 'center',
+                gap: '8px',
+                padding: '14px 28px',
                 borderRadius: '30px',
                 fontWeight: 700,
                 fontSize: '0.95rem',
                 background: 'var(--accent-primary)',
                 color: 'var(--text-on-accent)',
-                boxShadow: 'var(--card-shadow)',
+                boxShadow: '0 8px 25px var(--glow-accent)',
                 transition: 'all 0.3s ease',
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.transform = 'translateY(-3px)')}
-              onMouseLeave={(e) => (e.currentTarget.style.transform = 'translateY(0)')}
             >
-              Explore Our Services <ArrowRight size={18} />
+              Explore Services <ArrowRight size={17} />
+            </a>
+
+            <a
+              href="https://wa.me/918072935820?text=Hi%20OberonVision%2C%20I%20would%20like%20to%20discuss%20a%20project"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hero-btn-whatsapp mobile-only-flex"
+              style={{
+                display: 'none',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                padding: '14px 24px',
+                borderRadius: '30px',
+                fontWeight: 700,
+                fontSize: '0.95rem',
+                background: 'rgba(16, 185, 129, 0.15)',
+                color: '#10b981',
+                border: '1px solid rgba(16, 185, 129, 0.4)',
+                transition: 'all 0.3s ease',
+              }}
+            >
+              <MessageSquare size={17} /> WhatsApp Us
             </a>
 
             <a
               href="#contact"
+              className="hero-btn-secondary"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '10px',
-                padding: '14px 30px',
+                justifyContent: 'center',
+                gap: '8px',
+                padding: '14px 26px',
                 borderRadius: '30px',
                 fontWeight: 700,
                 fontSize: '0.95rem',
-                background: 'transparent',
+                background: 'var(--bg-secondary)',
                 color: 'var(--text-primary)',
                 border: '1px solid var(--border-color)',
                 transition: 'all 0.3s ease',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'var(--accent-primary)';
-                e.currentTarget.style.transform = 'translateY(-3px)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'var(--border-color)';
-                e.currentTarget.style.transform = 'translateY(0)';
               }}
             >
               Let&apos;s Work Together
@@ -102,65 +143,57 @@ export const Hero = () => {
           </div>
         </div>
 
-        {/* Feature Highlights & Value Strip below the 21:9 Banner */}
+        {/* Feature Highlights & Value Strip */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            gap: '20px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gap: '16px',
           }}
           className="hero-metrics-grid"
         >
           {[
             {
-              icon: <Layers size={22} style={{ color: 'var(--accent-primary)' }} />,
+              icon: <Layers size={20} style={{ color: 'var(--accent-primary)' }} />,
               title: 'Unified Architecture',
-              desc: 'Seamless synergy across web, mobile, analytics, and marketing platforms.',
+              desc: 'Seamless synergy across web, mobile, analytics & marketing.',
             },
             {
-              icon: <Cpu size={22} style={{ color: '#00f0ff' }} />,
+              icon: <Cpu size={20} style={{ color: '#00f0ff' }} />,
               title: 'Cinematic Visual Craft',
-              desc: 'High-fidelity motion graphics, real-time shaders, and fluid interaction.',
+              desc: 'High-fidelity motion graphics, sleek shaders & fluid UX.',
             },
             {
-              icon: <Code size={22} style={{ color: '#ff007f' }} />,
+              icon: <Code size={20} style={{ color: '#ff007f' }} />,
               title: 'Engineering Rigor',
-              desc: 'Performant, scalable, secure applications engineered with precision.',
+              desc: 'Performant, scalable, secure applications built with precision.',
             },
             {
-              icon: <Award size={22} style={{ color: 'var(--accent-primary)' }} />,
+              icon: <Award size={20} style={{ color: 'var(--accent-primary)' }} />,
               title: 'Commercial Impact',
-              desc: 'Built to elevate brand perception and drive verifiable business growth.',
+              desc: 'Elevate brand perception and drive verifiable growth.',
             },
           ].map((item, idx) => (
             <div
               key={idx}
               className="glass-panel interactive-card"
               style={{
-                padding: '24px',
+                padding: '20px',
                 borderRadius: '16px',
                 background: 'var(--bg-card)',
                 border: '1px solid var(--border-color)',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '12px',
-                transition: 'transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-4px)';
-                e.currentTarget.style.borderColor = 'var(--accent-primary)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.borderColor = 'var(--border-color)';
+                gap: '10px',
+                transition: 'transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease',
               }}
             >
               <div
                 style={{
-                  width: '44px',
-                  height: '44px',
+                  width: '40px',
+                  height: '40px',
                   borderRadius: '12px',
-                  background: 'rgba(255, 255, 255, 0.04)',
+                  background: 'rgba(255, 255, 255, 0.05)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -170,10 +203,10 @@ export const Hero = () => {
                 {item.icon}
               </div>
               <div>
-                <h4 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: '6px', color: 'var(--text-primary)' }}>
+                <h3 style={{ fontSize: '0.98rem', fontWeight: 700, marginBottom: '4px', color: 'var(--text-primary)' }}>
                   {item.title}
-                </h4>
-                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                </h3>
+                <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.45 }}>
                   {item.desc}
                 </p>
               </div>
@@ -181,6 +214,40 @@ export const Hero = () => {
           ))}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .hero-section {
+            padding-top: 76px !important;
+            padding-bottom: 40px !important;
+          }
+          .hero-banner-container {
+            margin-bottom: 24px !important;
+          }
+          .hero-cta-buttons {
+            flex-direction: column !important;
+            width: 100% !important;
+            gap: 10px !important;
+          }
+          .hero-btn-primary, .hero-btn-secondary, .hero-btn-whatsapp {
+            width: 100% !important;
+            padding: 14px 20px !important;
+          }
+          .mobile-only-flex {
+            display: inline-flex !important;
+          }
+          .hero-metrics-grid {
+            grid-template-columns: 1fr 1fr !important;
+            gap: 12px !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .hero-metrics-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

@@ -7,7 +7,12 @@ export const CustomCursor = () => {
   const [isTouch, setIsTouch] = useState(false);
 
   useEffect(() => {
-    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+    // Immediate touch/mobile screen bypass (saves mobile CPU & event loop)
+    if (
+      'ontouchstart' in window ||
+      navigator.maxTouchPoints > 0 ||
+      window.matchMedia('(pointer: coarse)').matches
+    ) {
       setIsTouch(true);
       return;
     }
@@ -35,9 +40,9 @@ export const CustomCursor = () => {
       }
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseleave', handleMouseLeave);
-    document.addEventListener('mouseover', handleMouseOver);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    document.addEventListener('mouseleave', handleMouseLeave, { passive: true });
+    document.addEventListener('mouseover', handleMouseOver, { passive: true });
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
@@ -62,7 +67,7 @@ export const CustomCursor = () => {
           pointerEvents: 'none',
           zIndex: 9999,
           transform: `translate3d(${pos.x - 4}px, ${pos.y - 4}px, 0)`,
-          transition: 'transform 0.05s linear, background-color 0.6s ease',
+          transition: 'transform 0.05s linear, background-color 0.4s ease',
           opacity: 0.9,
         }}
       />
@@ -79,7 +84,7 @@ export const CustomCursor = () => {
           pointerEvents: 'none',
           zIndex: 9998,
           transform: `translate3d(${pos.x - (isHovered ? 24 : 16)}px, ${pos.y - (isHovered ? 24 : 16)}px, 0)`,
-          transition: 'width 0.25s cubic-bezier(0.16, 1, 0.3, 1), height 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.15s ease-out, border-color 0.6s ease, background 0.6s ease',
+          transition: 'width 0.25s cubic-bezier(0.16, 1, 0.3, 1), height 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.15s ease-out, border-color 0.4s ease, background 0.4s ease',
           boxShadow: isHovered ? '0 0 16px var(--glow-accent)' : 'none',
         }}
       />

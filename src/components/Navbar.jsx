@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import Logo from './Logo';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X, Sun, Moon, Phone, MessageSquare } from 'lucide-react';
 
 export const Navbar = () => {
   const { isDark, isLight, toggleTheme } = useTheme();
@@ -10,9 +10,9 @@ export const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 15);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -28,11 +28,11 @@ export const Navbar = () => {
     <header
       style={{
         position: 'fixed',
-        top: isScrolled ? '12px' : '0',
+        top: isScrolled ? '8px' : '0',
         left: '0',
         right: '0',
         zIndex: 1000,
-        padding: isScrolled ? '0 16px' : '0',
+        padding: isScrolled ? '0 12px' : '0',
         transition: 'top 0.3s ease, padding 0.3s ease',
       }}
     >
@@ -42,32 +42,33 @@ export const Navbar = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          height: '80px',
+          height: isScrolled ? '64px' : '72px',
           background: isScrolled ? 'var(--bg-nav)' : 'transparent',
           backdropFilter: isScrolled ? 'blur(16px)' : 'none',
           WebkitBackdropFilter: isScrolled ? 'blur(16px)' : 'none',
           borderRadius: isScrolled ? 'var(--theme-border-radius)' : '0',
           border: isScrolled ? '1px solid var(--border-color)' : '1px solid transparent',
           boxShadow: isScrolled ? 'var(--card-shadow)' : 'none',
-          transition: 'all 0.4s ease',
+          transition: 'all 0.3s ease',
         }}
       >
         <a href="#home" style={{ display: 'flex', alignItems: 'center' }}>
           <Logo size="medium" />
         </a>
 
-        <ul style={{ display: 'flex', alignItems: 'center', gap: '32px' }} className="desktop-only-nav">
+        {/* Desktop Navigation Links */}
+        <ul style={{ display: 'flex', alignItems: 'center', gap: '28px' }} className="desktop-only-nav">
           {navLinks.map((link) => (
             <li key={link.label}>
               <a
                 href={link.href}
                 style={{
-                  fontSize: '0.95rem',
-                  fontWeight: 500,
+                  fontSize: '0.92rem',
+                  fontWeight: 600,
                   color: 'var(--text-secondary)',
                   position: 'relative',
                   padding: '6px 0',
-                  transition: 'color 0.3s ease',
+                  transition: 'color 0.25s ease',
                 }}
                 onMouseEnter={(e) => (e.target.style.color = 'var(--text-primary)')}
                 onMouseLeave={(e) => (e.target.style.color = 'var(--text-secondary)')}
@@ -78,8 +79,9 @@ export const Navbar = () => {
           ))}
         </ul>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-          {/* SINGLE DUAL-ICON THEME SWITCH (LIGHT & DARK IN ONE UNIFIED SWITCH) */}
+        {/* Right Action Cluster */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          {/* Theme Toggle Capsule */}
           <button
             onClick={toggleTheme}
             className="theme-toggle-switch"
@@ -90,40 +92,40 @@ export const Navbar = () => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              width: '76px',
-              height: '38px',
-              padding: '4px',
-              borderRadius: '30px',
+              width: '68px',
+              height: '34px',
+              padding: '3px',
+              borderRadius: '24px',
               background: 'var(--bg-secondary)',
               border: '1px solid var(--border-color)',
-              boxShadow: 'inset 0 2px 6px rgba(0, 0, 0, 0.25)',
+              boxShadow: 'inset 0 2px 5px rgba(0, 0, 0, 0.25)',
               cursor: 'pointer',
               outline: 'none',
               transition: 'all 0.3s ease',
             }}
           >
-            {/* Sliding Indicator Capsule */}
+            {/* Sliding Pill Indicator */}
             <div
               style={{
                 position: 'absolute',
-                top: '4px',
-                left: isDark ? '40px' : '4px',
-                width: '30px',
-                height: '28px',
-                borderRadius: '20px',
+                top: '3px',
+                left: isDark ? '36px' : '3px',
+                width: '28px',
+                height: '26px',
+                borderRadius: '16px',
                 background: isDark
                   ? 'linear-gradient(135deg, rgba(0, 240, 255, 0.3), rgba(168, 85, 247, 0.45))'
                   : 'linear-gradient(135deg, #ffffff, #fffbeb)',
                 border: isDark ? '1px solid #00f0ff' : '1px solid rgba(245, 158, 11, 0.5)',
                 boxShadow: isDark
-                  ? '0 0 14px rgba(0, 240, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4)'
-                  : '0 2px 8px rgba(0, 0, 0, 0.15)',
-                transition: 'left 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, border-color 0.3s ease',
+                  ? '0 0 12px rgba(0, 240, 255, 0.5)'
+                  : '0 2px 6px rgba(0, 0, 0, 0.15)',
+                transition: 'left 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
                 zIndex: 1,
               }}
             />
 
-            {/* Sun Icon (Light Mode) */}
+            {/* Sun Icon */}
             <div
               style={{
                 position: 'relative',
@@ -131,17 +133,15 @@ export const Navbar = () => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                width: '30px',
-                height: '28px',
+                width: '28px',
+                height: '26px',
                 color: isLight ? '#f59e0b' : 'var(--text-muted)',
-                filter: isLight ? 'drop-shadow(0 0 6px rgba(245, 158, 11, 0.8))' : 'none',
-                transition: 'color 0.3s ease, filter 0.3s ease',
               }}
             >
-              <Sun size={17} strokeWidth={2.4} />
+              <Sun size={15} strokeWidth={2.4} />
             </div>
 
-            {/* Moon Icon (Dark Mode) */}
+            {/* Moon Icon */}
             <div
               style={{
                 position: 'relative',
@@ -149,62 +149,64 @@ export const Navbar = () => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                width: '30px',
-                height: '28px',
+                width: '28px',
+                height: '26px',
                 color: isDark ? '#00f0ff' : 'var(--text-muted)',
-                filter: isDark ? 'drop-shadow(0 0 8px rgba(0, 240, 255, 0.9))' : 'none',
-                transition: 'color 0.3s ease, filter 0.3s ease',
               }}
             >
-              <Moon size={16} strokeWidth={2.4} />
+              <Moon size={14} strokeWidth={2.4} />
             </div>
           </button>
 
+          {/* Mobile Hamburger Toggle Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="mobile-hamburger-btn"
-            aria-label="Toggle menu"
+            aria-label="Toggle navigation menu"
             style={{
               display: 'none',
-              padding: '8px',
-              borderRadius: '8px',
+              padding: '7px',
+              borderRadius: '10px',
               color: 'var(--text-primary)',
               background: 'var(--bg-secondary)',
               border: '1px solid var(--border-color)',
             }}
           >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </nav>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Drawer Overlay */}
       {mobileMenuOpen && (
         <div
           style={{
             position: 'fixed',
-            top: '80px',
+            top: '72px',
             left: 0,
             right: 0,
             background: 'var(--bg-primary)',
             borderBottom: '1px solid var(--border-color)',
-            padding: '24px',
-            boxShadow: 'var(--card-shadow)',
+            padding: '24px 20px',
+            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.7)',
             zIndex: 999,
+            animation: 'slideDownNav 0.25s ease-out',
           }}
         >
-          <ul style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '24px' }}>
+          <ul style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '20px' }}>
             {navLinks.map((link) => (
               <li key={link.label}>
                 <a
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
                   style={{
-                    fontSize: '1.1rem',
-                    fontWeight: 600,
+                    fontSize: '1.05rem',
+                    fontWeight: 700,
                     color: 'var(--text-primary)',
                     display: 'block',
-                    padding: '8px 0',
+                    padding: '8px 12px',
+                    borderRadius: '12px',
+                    background: 'rgba(255, 255, 255, 0.03)',
                   }}
                 >
                   {link.label}
@@ -213,46 +215,46 @@ export const Navbar = () => {
             ))}
           </ul>
 
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '16px', borderTop: '1px solid var(--border-color)' }}>
-            <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Theme Mode</span>
-            <button
-              onClick={toggleTheme}
+          {/* Quick Direct Mobile Contact Strip */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', paddingTop: '16px', borderTop: '1px solid var(--border-color)' }}>
+            <a
+              href="tel:8072935820"
               style={{
-                position: 'relative',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'space-between',
-                width: '76px',
-                height: '38px',
-                padding: '4px',
-                borderRadius: '30px',
+                justifyContent: 'center',
+                gap: '8px',
+                padding: '12px',
+                borderRadius: '14px',
                 background: 'var(--bg-secondary)',
                 border: '1px solid var(--border-color)',
+                color: 'var(--text-primary)',
+                fontWeight: 700,
+                fontSize: '0.85rem',
               }}
             >
-              <div
-                style={{
-                  position: 'absolute',
-                  top: '4px',
-                  left: isDark ? '40px' : '4px',
-                  width: '30px',
-                  height: '28px',
-                  borderRadius: '20px',
-                  background: isDark
-                    ? 'linear-gradient(135deg, rgba(0, 240, 255, 0.3), rgba(168, 85, 247, 0.45))'
-                    : 'linear-gradient(135deg, #ffffff, #fffbeb)',
-                  border: isDark ? '1px solid #00f0ff' : '1px solid rgba(245, 158, 11, 0.5)',
-                  transition: 'left 0.35s ease',
-                  zIndex: 1,
-                }}
-              />
-              <div style={{ position: 'relative', zIndex: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', width: '30px', color: isLight ? '#f59e0b' : 'var(--text-muted)' }}>
-                <Sun size={16} />
-              </div>
-              <div style={{ position: 'relative', zIndex: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', width: '30px', color: isDark ? '#00f0ff' : 'var(--text-muted)' }}>
-                <Moon size={16} />
-              </div>
-            </button>
+              <Phone size={15} style={{ color: 'var(--accent-primary)' }} /> Call Us
+            </a>
+            <a
+              href="https://wa.me/918072935820?text=Hi%20OberonVision%2C%20I%20would%20like%20to%20discuss%20a%20project"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                padding: '12px',
+                borderRadius: '14px',
+                background: 'rgba(16, 185, 129, 0.15)',
+                border: '1px solid rgba(16, 185, 129, 0.4)',
+                color: '#10b981',
+                fontWeight: 700,
+                fontSize: '0.85rem',
+              }}
+            >
+              <MessageSquare size={15} /> WhatsApp
+            </a>
           </div>
         </div>
       )}
@@ -265,6 +267,10 @@ export const Navbar = () => {
           .mobile-hamburger-btn {
             display: flex !important;
           }
+        }
+        @keyframes slideDownNav {
+          from { transform: translateY(-10px); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
         }
       `}</style>
     </header>
