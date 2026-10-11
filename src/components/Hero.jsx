@@ -1,5 +1,5 @@
 import CinematicHeroBanner from './CinematicHeroBanner';
-import { Layers, Code, Cpu, Award, ArrowRight, MessageSquare } from 'lucide-react';
+import { Layers, Code, Cpu, Award, ArrowRight, MessageSquare, CheckCircle2 } from 'lucide-react';
 
 export const Hero = () => {
   return (
@@ -8,7 +8,7 @@ export const Hero = () => {
       style={{
         position: 'relative',
         minHeight: '100vh',
-        paddingTop: '88px',
+        paddingTop: '96px',
         paddingBottom: '60px',
         overflow: 'hidden',
         background: 'linear-gradient(180deg, var(--bg-primary) 0%, rgba(10, 20, 18, 0.4) 100%)',
@@ -16,134 +16,167 @@ export const Hero = () => {
       className="hero-section"
     >
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-        {/* Cinematic Looping Hero Video Banner */}
-        <div style={{ marginBottom: '32px' }} className="hero-banner-container">
-          <CinematicHeroBanner />
-        </div>
-
-        {/* Agency Introduction & Call to Action Strip */}
+        {/* ------------------------------------------------------------- */}
+        {/* TWO-COLUMN SPLIT HERO: CONTENT ON LEFT, BANNER ON RIGHT      */}
+        {/* ------------------------------------------------------------- */}
         <div
           style={{
-            textAlign: 'center',
-            maxWidth: '780px',
-            margin: '0 auto 40px',
+            display: 'grid',
+            gridTemplateColumns: '1.05fr 1fr',
+            gap: '48px',
+            alignItems: 'center',
+            marginBottom: '56px',
           }}
-          className="hero-text-block"
+          className="hero-split-grid"
         >
-          <div
-            className="section-badge hero-pill-badge"
-            style={{
-              justifyContent: 'center',
-              marginBottom: '16px',
-            }}
-          >
-            Digital Architecture • Creative Engineering
+          {/* LEFT SIDE: Headings, Value Proposition & CTA Actions */}
+          <div className="hero-content-column">
+            <div
+              className="section-badge hero-pill-badge"
+              style={{
+                marginBottom: '18px',
+              }}
+            >
+              Digital Architecture • Creative Engineering
+            </div>
+
+            <h1
+              style={{
+                fontSize: 'clamp(2.1rem, 4.2vw, 3.4rem)',
+                fontWeight: 800,
+                letterSpacing: '-0.03em',
+                lineHeight: 1.15,
+                marginBottom: '18px',
+                color: 'var(--text-primary)',
+              }}
+              className="hero-heading"
+            >
+              Turn Your Ideas Into <span style={{ color: 'var(--accent-primary)' }}>Digital Reality.</span>
+            </h1>
+
+            <p
+              style={{
+                fontSize: 'clamp(0.98rem, 1.8vw, 1.15rem)',
+                lineHeight: 1.65,
+                color: 'var(--text-secondary)',
+                marginBottom: '28px',
+                maxWidth: '560px',
+              }}
+              className="hero-desc"
+            >
+              We design, develop, and deliver high-impact digital experiences that help businesses build stronger brands,
+              connect with customers, and scale with confidence.
+            </p>
+
+            {/* Call to Action Buttons */}
+            <div
+              style={{
+                display: 'flex',
+                gap: '12px',
+                flexWrap: 'wrap',
+                marginBottom: '28px',
+              }}
+              className="hero-cta-buttons"
+            >
+              <a
+                href="#services"
+                className="hero-btn-primary"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  padding: '14px 28px',
+                  borderRadius: '30px',
+                  fontWeight: 700,
+                  fontSize: '0.95rem',
+                  background: 'var(--accent-primary)',
+                  color: 'var(--text-on-accent)',
+                  boxShadow: '0 8px 25px var(--glow-accent)',
+                  transition: 'all 0.3s ease',
+                }}
+              >
+                Explore Services <ArrowRight size={17} />
+              </a>
+
+              <a
+                href="https://wa.me/918072935820?text=Hi%20OberonVision%2C%20I%20would%20like%20to%20discuss%20a%20project"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hero-btn-whatsapp"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  padding: '14px 24px',
+                  borderRadius: '30px',
+                  fontWeight: 700,
+                  fontSize: '0.95rem',
+                  background: 'rgba(16, 185, 129, 0.15)',
+                  color: '#10b981',
+                  border: '1px solid rgba(16, 185, 129, 0.4)',
+                  transition: 'all 0.3s ease',
+                }}
+              >
+                <MessageSquare size={17} /> WhatsApp
+              </a>
+
+              <a
+                href="#contact"
+                className="hero-btn-secondary"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  padding: '14px 24px',
+                  borderRadius: '30px',
+                  fontWeight: 700,
+                  fontSize: '0.95rem',
+                  background: 'var(--bg-secondary)',
+                  color: 'var(--text-primary)',
+                  border: '1px solid var(--border-color)',
+                  transition: 'all 0.3s ease',
+                }}
+              >
+                Let&apos;s Work Together
+              </a>
+            </div>
+
+            {/* Quick Trust Highlights Strip */}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '16px',
+                flexWrap: 'wrap',
+                fontSize: '0.82rem',
+                color: 'var(--text-muted)',
+              }}
+              className="hero-trust-strip"
+            >
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                <CheckCircle2 size={14} style={{ color: 'var(--accent-secondary)' }} /> Web &amp; Mobile
+              </div>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                <CheckCircle2 size={14} style={{ color: 'var(--accent-secondary)' }} /> UI/UX Architecture
+              </div>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                <CheckCircle2 size={14} style={{ color: 'var(--accent-secondary)' }} /> Analytics &amp; SEO
+              </div>
+            </div>
           </div>
 
-          <h1
-            style={{
-              fontSize: 'clamp(1.9rem, 6vw, 3.2rem)',
-              fontWeight: 800,
-              letterSpacing: '-0.03em',
-              lineHeight: 1.15,
-              marginBottom: '16px',
-              color: 'var(--text-primary)',
-            }}
-          >
-            Turn Your Ideas Into <span style={{ color: 'var(--accent-primary)' }}>Digital Reality.</span>
-          </h1>
-          <p
-            style={{
-              fontSize: 'clamp(0.95rem, 3.2vw, 1.15rem)',
-              lineHeight: 1.6,
-              color: 'var(--text-secondary)',
-              marginBottom: '28px',
-              maxWidth: '640px',
-              marginLeft: 'auto',
-              marginRight: 'auto',
-            }}
-          >
-            We design, develop, and deliver high-impact digital experiences that help businesses build stronger brands,
-            connect with customers, and scale with confidence.
-          </p>
-
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              gap: '12px',
-              flexWrap: 'wrap',
-            }}
-            className="hero-cta-buttons"
-          >
-            <a
-              href="#services"
-              className="hero-btn-primary"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '8px',
-                padding: '14px 28px',
-                borderRadius: '30px',
-                fontWeight: 700,
-                fontSize: '0.95rem',
-                background: 'var(--accent-primary)',
-                color: 'var(--text-on-accent)',
-                boxShadow: '0 8px 25px var(--glow-accent)',
-                transition: 'all 0.3s ease',
-              }}
-            >
-              Explore Services <ArrowRight size={17} />
-            </a>
-
-            <a
-              href="https://wa.me/918072935820?text=Hi%20OberonVision%2C%20I%20would%20like%20to%20discuss%20a%20project"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hero-btn-whatsapp mobile-only-flex"
-              style={{
-                display: 'none',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '8px',
-                padding: '14px 24px',
-                borderRadius: '30px',
-                fontWeight: 700,
-                fontSize: '0.95rem',
-                background: 'rgba(16, 185, 129, 0.15)',
-                color: '#10b981',
-                border: '1px solid rgba(16, 185, 129, 0.4)',
-                transition: 'all 0.3s ease',
-              }}
-            >
-              <MessageSquare size={17} /> WhatsApp Us
-            </a>
-
-            <a
-              href="#contact"
-              className="hero-btn-secondary"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '8px',
-                padding: '14px 26px',
-                borderRadius: '30px',
-                fontWeight: 700,
-                fontSize: '0.95rem',
-                background: 'var(--bg-secondary)',
-                color: 'var(--text-primary)',
-                border: '1px solid var(--border-color)',
-                transition: 'all 0.3s ease',
-              }}
-            >
-              Let&apos;s Work Together
-            </a>
+          {/* RIGHT SIDE: Cinematic Video Banner */}
+          <div className="hero-banner-column">
+            <CinematicHeroBanner />
           </div>
         </div>
 
-        {/* Feature Highlights & Value Strip */}
+        {/* ------------------------------------------------------------- */}
+        {/* FEATURE HIGHLIGHTS & VALUE METRICS STRIP                      */}
+        {/* ------------------------------------------------------------- */}
         <div
           style={{
             display: 'grid',
@@ -215,14 +248,33 @@ export const Hero = () => {
         </div>
       </div>
 
+      {/* Responsive Styles for Split Layout */}
       <style>{`
+        @media (max-width: 991px) {
+          .hero-split-grid {
+            grid-template-columns: 1fr !important;
+            gap: 36px !important;
+            margin-bottom: 40px !important;
+          }
+          .hero-content-column {
+            text-align: center !important;
+          }
+          .hero-desc {
+            margin-left: auto !important;
+            margin-right: auto !important;
+          }
+          .hero-cta-buttons {
+            justify-content: center !important;
+          }
+          .hero-trust-strip {
+            justify-content: center !important;
+          }
+        }
+
         @media (max-width: 768px) {
           .hero-section {
             padding-top: 76px !important;
             padding-bottom: 40px !important;
-          }
-          .hero-banner-container {
-            margin-bottom: 24px !important;
           }
           .hero-cta-buttons {
             flex-direction: column !important;
@@ -232,9 +284,6 @@ export const Hero = () => {
           .hero-btn-primary, .hero-btn-secondary, .hero-btn-whatsapp {
             width: 100% !important;
             padding: 14px 20px !important;
-          }
-          .mobile-only-flex {
-            display: inline-flex !important;
           }
           .hero-metrics-grid {
             grid-template-columns: 1fr 1fr !important;

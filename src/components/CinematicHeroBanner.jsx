@@ -134,9 +134,9 @@ export const CinematicHeroBanner = () => {
       style={{
         position: 'relative',
         width: '100%',
-        aspectRatio: '21 / 9',
-        minHeight: '440px',
-        maxHeight: '840px',
+        aspectRatio: '16 / 10',
+        minHeight: '360px',
+        maxHeight: '520px',
         margin: '0 auto',
         overflow: 'hidden',
         backgroundColor: '#040706',
@@ -273,19 +273,19 @@ export const CinematicHeroBanner = () => {
         </button>
       </div>
 
-      {/* Responsive Styles tailored for Mobile View */}
+      {/* Responsive Styles tailored for Split Column & Mobile View */}
       <style>{`
         @media (max-width: 1024px) {
           .cinematic-hero-wrapper {
-            aspect-ratio: 16 / 9 !important;
-            min-height: 380px !important;
+            aspect-ratio: 16 / 10 !important;
+            min-height: 320px !important;
           }
         }
 
         @media (max-width: 768px) {
           .cinematic-hero-wrapper {
             aspect-ratio: 4 / 3 !important;
-            min-height: 280px !important;
+            min-height: 260px !important;
             border-radius: 20px !important;
           }
           .banner-controls-strip {
@@ -297,7 +297,7 @@ export const CinematicHeroBanner = () => {
         @media (max-width: 480px) {
           .cinematic-hero-wrapper {
             aspect-ratio: 1 / 1 !important;
-            min-height: 260px !important;
+            min-height: 240px !important;
             border-radius: 18px !important;
           }
         }
