@@ -15,55 +15,55 @@
 
 :root,
 [data-theme="dark"] {
-  --bg-primary: #060c0a;
-  --bg-secondary: #0c1713;
-  --bg-tertiary: #13241e;
-  --bg-card: rgba(12, 23, 19, 0.85);
-  --bg-card-hover: rgba(18, 35, 29, 0.95);
-  --bg-nav: rgba(6, 12, 10, 0.88);
-  --bg-footer: #040705;
+  --bg-primary: #050a08;
+  --bg-secondary: #0a1410;
+  --bg-tertiary: #10201a;
+  --bg-card: rgba(10, 22, 17, 0.88);
+  --bg-card-hover: rgba(15, 32, 25, 0.96);
+  --bg-nav: rgba(5, 10, 8, 0.90);
+  --bg-footer: #030705;
   --text-footer: #f0faf5;
-  --text-primary: #f3fcf8;
-  --text-secondary: #a3c2b5;
-  --text-muted: #66887a;
-  --text-on-accent: #020705;
-  --accent-primary: #00f0ff;
-  --accent-secondary: #a855f7;
-  --accent-highlight: #10b981;
-  --border-color: rgba(0, 240, 255, 0.15);
-  --border-active: #00f0ff;
+  --text-primary: #f5fbf7;
+  --text-secondary: #a3c2b4;
+  --text-muted: #618274;
+  --text-on-accent: #050a08;
+  --accent-primary: #d8b77a; /* Rich Champagne Gold */
+  --accent-secondary: #10b981; /* Luminous Emerald Jade */
+  --accent-highlight: #22c55e; /* Radiant Emerald */
+  --border-color: rgba(216, 183, 122, 0.18);
+  --border-active: #d8b77a;
   --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-  --card-shadow-hover: 0 18px 45px rgba(0, 0, 0, 0.85), 0 0 25px rgba(0, 240, 255, 0.2);
-  --glass-bg: rgba(11, 22, 18, 0.75);
-  --glass-border: rgba(0, 240, 255, 0.22);
-  --glow-accent: rgba(0, 240, 255, 0.2);
+  --card-shadow-hover: 0 18px 45px rgba(0, 0, 0, 0.85), 0 0 25px rgba(216, 183, 122, 0.2);
+  --glass-bg: rgba(10, 22, 17, 0.8);
+  --glass-border: rgba(216, 183, 122, 0.22);
+  --glow-accent: rgba(216, 183, 122, 0.22);
   --theme-border-radius: 16px;
   --animation-factor: 1;
 }
 
 [data-theme="light"] {
-  --bg-primary: #f2f7f4;
-  --bg-secondary: #e4eee7;
-  --bg-tertiary: #d6e5db;
-  --bg-card: rgba(255, 255, 255, 0.92);
+  --bg-primary: #f4f8f5;
+  --bg-secondary: #e6efe9;
+  --bg-tertiary: #d8e5dc;
+  --bg-card: rgba(255, 255, 255, 0.94);
   --bg-card-hover: #ffffff;
-  --bg-nav: rgba(242, 247, 244, 0.9);
+  --bg-nav: rgba(244, 248, 245, 0.92);
   --bg-footer: #08110d;
   --text-footer: #f0faf5;
   --text-primary: #0a1a14;
   --text-secondary: #274537;
   --text-muted: #4e6b5d;
   --text-on-accent: #ffffff;
-  --accent-primary: #00878a;
-  --accent-secondary: #7c3aed;
+  --accent-primary: #b0893a; /* Antique Champagne Bronze */
+  --accent-secondary: #059669; /* Deep Forest Emerald */
   --accent-highlight: #059669;
-  --border-color: rgba(10, 36, 26, 0.12);
-  --border-active: #00878a;
+  --border-color: rgba(176, 137, 58, 0.18);
+  --border-active: #b0893a;
   --card-shadow: 0 8px 24px rgba(10, 36, 26, 0.07);
-  --card-shadow-hover: 0 16px 36px rgba(10, 36, 26, 0.14), 0 0 20px rgba(0, 135, 138, 0.15);
-  --glass-bg: rgba(255, 255, 255, 0.88);
-  --glass-border: rgba(10, 36, 26, 0.12);
-  --glow-accent: rgba(0, 135, 138, 0.15);
+  --card-shadow-hover: 0 16px 36px rgba(10, 36, 26, 0.14), 0 0 20px rgba(176, 137, 58, 0.18);
+  --glass-bg: rgba(255, 255, 255, 0.9);
+  --glass-border: rgba(176, 137, 58, 0.18);
+  --glow-accent: rgba(176, 137, 58, 0.18);
   --theme-border-radius: 16px;
   --animation-factor: 1;
 }
@@ -93,7 +93,7 @@ body {
   touch-action: manipulation;
 }
 
-/* Targeted performance transitions instead of universal wildcard on all DOM nodes */
+/* Targeted performance transitions */
 body, header, nav, footer, .glass-panel, .theme-toggle-switch {
   transition: background-color var(--transition-speed) ease,
               border-color var(--transition-speed) ease,
@@ -155,7 +155,7 @@ img, video {
   letter-spacing: 0.08em;
   color: var(--accent-primary);
   border: 1px solid var(--border-color);
-  background: rgba(49, 90, 71, 0.15);
+  background: rgba(216, 183, 122, 0.12);
   border-radius: 30px;
   align-items: center;
   gap: 8px;

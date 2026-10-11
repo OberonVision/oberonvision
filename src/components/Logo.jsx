@@ -24,7 +24,7 @@ export const Logo = ({ size = 'medium', className = '' }) => {
             width: '100%',
             height: '100%',
             objectFit: 'contain',
-            filter: 'drop-shadow(0 2px 10px rgba(0, 217, 245, 0.25))',
+            filter: 'drop-shadow(0 2px 10px var(--glow-accent))',
           }}
         />
       </div>

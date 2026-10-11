@@ -38,13 +38,13 @@ export const DedicatedSpace = () => {
       ctx.save();
       ctx.translate(cx, cy);
       ctx.rotate(angle * 0.3);
-      ctx.strokeStyle = 'rgba(0, 240, 255, 0.4)';
+      ctx.strokeStyle = 'rgba(216, 183, 122, 0.45)';
       ctx.lineWidth = 2;
       ctx.setLineDash([8, 8]);
       ctx.strokeRect(-boxSize / 2, -boxSize / 2, boxSize, boxSize);
 
       ctx.rotate(-angle * 0.6);
-      ctx.strokeStyle = 'rgba(168, 85, 247, 0.5)';
+      ctx.strokeStyle = 'rgba(16, 185, 129, 0.5)';
       ctx.lineWidth = 1.5;
       ctx.setLineDash([]);
       ctx.strokeRect((-boxSize * 0.7) / 2, (-boxSize * 0.7) / 2, boxSize * 0.7, boxSize * 0.7);

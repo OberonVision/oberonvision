@@ -159,17 +159,17 @@ export const Hero = () => {
               desc: 'Seamless synergy across web, mobile, analytics & marketing.',
             },
             {
-              icon: <Cpu size={20} style={{ color: '#00f0ff' }} />,
+              icon: <Cpu size={20} style={{ color: 'var(--accent-secondary)' }} />,
               title: 'Cinematic Visual Craft',
               desc: 'High-fidelity motion graphics, sleek shaders & fluid UX.',
             },
             {
-              icon: <Code size={20} style={{ color: '#ff007f' }} />,
+              icon: <Code size={20} style={{ color: 'var(--accent-primary)' }} />,
               title: 'Engineering Rigor',
               desc: 'Performant, scalable, secure applications built with precision.',
             },
             {
-              icon: <Award size={20} style={{ color: 'var(--accent-primary)' }} />,
+              icon: <Award size={20} style={{ color: 'var(--accent-secondary)' }} />,
               title: 'Commercial Impact',
               desc: 'Elevate brand perception and drive verifiable growth.',
             },

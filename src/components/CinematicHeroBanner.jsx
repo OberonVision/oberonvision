@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
-import { Volume2, VolumeX, Play, Pause, RotateCcw, Sparkles } from 'lucide-react';
+import { Volume2, VolumeX, Play, Pause } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 export const CinematicHeroBanner = () => {
@@ -10,7 +10,6 @@ export const CinematicHeroBanner = () => {
   // Playback state
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   // Mouse parallax position (only enabled on non-touch devices for maximum mobile performance)
   const mouseRef = useRef({ x: 0, y: 0, targetX: 0, targetY: 0 });
@@ -63,7 +62,6 @@ export const CinematicHeroBanner = () => {
     const video = videoRef.current;
     if (!video) return;
 
-    // Fast loading: trigger play safely
     const startPlay = () => {
       video.muted = true;
       setIsMuted(true);
@@ -97,12 +95,8 @@ export const CinematicHeroBanner = () => {
 
     startPlay();
 
-    const handleLoadedData = () => setIsVideoLoaded(true);
-    video.addEventListener('loadeddata', handleLoadedData);
-
     return () => {
       observer.disconnect();
-      video.removeEventListener('loadeddata', handleLoadedData);
     };
   }, []);
 
@@ -118,16 +112,6 @@ export const CinematicHeroBanner = () => {
       video.pause();
       setIsPlaying(false);
     }
-  };
-
-  // Replay animation
-  const handleReplay = (e) => {
-    if (e) e.stopPropagation();
-    const video = videoRef.current;
-    if (!video) return;
-
-    video.currentTime = 0;
-    video.play().then(() => setIsPlaying(true)).catch(() => {});
   };
 
   // Audio Toggle
@@ -158,7 +142,7 @@ export const CinematicHeroBanner = () => {
         backgroundColor: '#040706',
         borderRadius: '24px',
         boxShadow: isDark
-          ? '0 25px 60px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(0, 240, 255, 0.2), 0 0 30px rgba(0, 240, 255, 0.12)'
+          ? '0 25px 60px rgba(0, 0, 0, 0.85), 0 0 0 1px var(--border-color), 0 0 30px var(--glow-accent)'
           : '0 20px 50px rgba(10, 36, 26, 0.18), 0 0 0 1px rgba(10, 36, 26, 0.15)',
         perspective: '1000px',
         transform: 'translateZ(0)',
@@ -189,7 +173,7 @@ export const CinematicHeroBanner = () => {
           objectPosition: 'center center',
           zIndex: 1,
           pointerEvents: 'none',
-          filter: isDark ? 'contrast(1.06) saturate(1.1)' : 'contrast(1.02) saturate(1.04)',
+          filter: isDark ? 'contrast(1.06) saturate(1.08)' : 'contrast(1.02) saturate(1.04)',
           transform: 'scale(1.02)',
           transition: 'transform 0.2s ease-out',
         }}
@@ -208,7 +192,7 @@ export const CinematicHeroBanner = () => {
         }}
       />
 
-      {/* Cinematic Inner Framing Border with Glowing Rim */}
+      {/* Cinematic Inner Framing Border with Warm Champagne/Emerald Sheen */}
       <div
         style={{
           position: 'absolute',
@@ -217,66 +201,11 @@ export const CinematicHeroBanner = () => {
           zIndex: 3,
           borderRadius: 'inherit',
           boxShadow: isDark
-            ? 'inset 0 0 60px rgba(0, 0, 0, 0.8), inset 0 0 24px rgba(0, 240, 255, 0.15)'
-            : 'inset 0 0 50px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(0, 135, 138, 0.1)',
-          border: isDark ? '1px solid rgba(0, 240, 255, 0.2)' : '1px solid rgba(255, 255, 255, 0.25)',
+            ? 'inset 0 0 60px rgba(0, 0, 0, 0.8), inset 0 0 24px var(--glow-accent)'
+            : 'inset 0 0 50px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(176, 137, 58, 0.1)',
+          border: isDark ? '1px solid var(--border-color)' : '1px solid rgba(255, 255, 255, 0.25)',
         }}
       />
-
-      {/* ------------------------------------------------------------- */}
-      {/* FLOATING BRAND BADGE OVER VIDEO BACKGROUND                    */}
-      {/* ------------------------------------------------------------- */}
-      <div
-        className="banner-overlay-content"
-        style={{
-          position: 'absolute',
-          bottom: '24px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          zIndex: 5,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          pointerEvents: 'none',
-          width: '92%',
-          maxWidth: '680px',
-          textAlign: 'center',
-        }}
-      >
-        <div
-          style={{
-            position: 'relative',
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '10px',
-            padding: '8px 20px',
-            borderRadius: '30px',
-            background: 'rgba(3, 8, 6, 0.75)',
-            backdropFilter: 'blur(12px)',
-            WebkitBackdropFilter: 'blur(12px)',
-            border: '1px solid rgba(0, 240, 255, 0.3)',
-            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.7), 0 0 16px rgba(0, 240, 255, 0.25)',
-          }}
-        >
-          <Sparkles size={14} style={{ color: '#00f0ff', filter: 'drop-shadow(0 0 6px #00f0ff)' }} />
-          <span
-            style={{
-              fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(0.75rem, 2.5vw, 0.92rem)',
-              fontWeight: 800,
-              letterSpacing: '0.18em',
-              textTransform: 'uppercase',
-              color: '#FFFFFF',
-              textShadow: '0 2px 4px #000000, 0 0 10px rgba(0, 240, 255, 0.8)',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            Digital Architecture • Visual Craft
-          </span>
-          <Sparkles size={14} style={{ color: '#00f0ff', filter: 'drop-shadow(0 0 6px #00f0ff)' }} />
-        </div>
-      </div>
 
       {/* ------------------------------------------------------------- */}
       {/* TOUCH-FRIENDLY CONTROLS (MUTE & PLAY/PAUSE)                  */}
@@ -305,11 +234,11 @@ export const CinematicHeroBanner = () => {
             width: '38px',
             height: '38px',
             borderRadius: '50%',
-            background: 'rgba(3, 8, 6, 0.75)',
+            background: 'rgba(5, 10, 8, 0.75)',
             backdropFilter: 'blur(10px)',
             WebkitBackdropFilter: 'blur(10px)',
-            border: '1px solid rgba(0, 240, 255, 0.3)',
-            color: '#00f0ff',
+            border: '1px solid var(--border-color)',
+            color: 'var(--accent-primary)',
             cursor: 'pointer',
             boxShadow: '0 4px 14px rgba(0, 0, 0, 0.6)',
             transition: 'all 0.2s ease',
@@ -330,11 +259,11 @@ export const CinematicHeroBanner = () => {
             width: '38px',
             height: '38px',
             borderRadius: '50%',
-            background: 'rgba(3, 8, 6, 0.75)',
+            background: 'rgba(5, 10, 8, 0.75)',
             backdropFilter: 'blur(10px)',
             WebkitBackdropFilter: 'blur(10px)',
-            border: '1px solid rgba(255, 255, 255, 0.2)',
-            color: isMuted ? 'rgba(255, 255, 255, 0.7)' : '#00f0ff',
+            border: '1px solid var(--border-color)',
+            color: isMuted ? 'rgba(255, 255, 255, 0.7)' : 'var(--accent-primary)',
             cursor: 'pointer',
             boxShadow: '0 4px 14px rgba(0, 0, 0, 0.6)',
             transition: 'all 0.2s ease',
@@ -358,9 +287,6 @@ export const CinematicHeroBanner = () => {
             aspect-ratio: 4 / 3 !important;
             min-height: 280px !important;
             border-radius: 20px !important;
-          }
-          .banner-overlay-content {
-            bottom: 14px !important;
           }
           .banner-controls-strip {
             top: 12px !important;

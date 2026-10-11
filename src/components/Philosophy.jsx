@@ -88,7 +88,7 @@ export const Philosophy = () => {
                   width: '42px',
                   height: '42px',
                   borderRadius: '12px',
-                  background: 'rgba(0, 240, 255, 0.1)',
+                  background: 'rgba(216, 183, 122, 0.12)',
                   color: 'var(--accent-primary)',
                   display: 'flex',
                   alignItems: 'center',

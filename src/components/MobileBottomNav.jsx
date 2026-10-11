@@ -103,7 +103,7 @@ export const MobileBottomNav = () => {
                   gap: '12px',
                   padding: '14px',
                   borderRadius: '16px',
-                  background: 'linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(16, 185, 129, 0.15))',
+                  background: 'linear-gradient(135deg, rgba(216, 183, 122, 0.2), rgba(16, 185, 129, 0.2))',
                   border: '1px solid var(--accent-primary)',
                   color: 'var(--text-primary)',
                   fontWeight: 700,
@@ -206,7 +206,7 @@ export const MobileBottomNav = () => {
                   fontWeight: 700,
                 }}
               >
-                {isDark ? <Moon size={14} style={{ color: '#00f0ff' }} /> : <Sun size={14} style={{ color: '#f59e0b' }} />}
+                {isDark ? <Moon size={14} style={{ color: 'var(--accent-primary)' }} /> : <Sun size={14} style={{ color: '#f59e0b' }} />}
                 {isDark ? 'Dark Mode' : 'Light Mode'}
               </button>
             </div>
@@ -306,7 +306,7 @@ export const MobileBottomNav = () => {
             borderRadius: '16px',
             background: quickActionOpen
               ? 'var(--accent-primary)'
-              : 'linear-gradient(135deg, rgba(0, 240, 255, 0.25), rgba(168, 85, 247, 0.3))',
+              : 'linear-gradient(135deg, rgba(216, 183, 122, 0.25), rgba(16, 185, 129, 0.25))',
             color: quickActionOpen ? 'var(--text-on-accent)' : 'var(--accent-primary)',
             border: '1px solid var(--border-color)',
             boxShadow: '0 0 12px var(--glow-accent)',

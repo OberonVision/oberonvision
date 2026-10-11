@@ -114,11 +114,11 @@ export const Navbar = () => {
                 height: '26px',
                 borderRadius: '16px',
                 background: isDark
-                  ? 'linear-gradient(135deg, rgba(0, 240, 255, 0.3), rgba(168, 85, 247, 0.45))'
+                  ? 'linear-gradient(135deg, rgba(216, 183, 122, 0.35), rgba(16, 185, 129, 0.4))'
                   : 'linear-gradient(135deg, #ffffff, #fffbeb)',
-                border: isDark ? '1px solid #00f0ff' : '1px solid rgba(245, 158, 11, 0.5)',
+                border: isDark ? '1px solid var(--accent-primary)' : '1px solid rgba(245, 158, 11, 0.5)',
                 boxShadow: isDark
-                  ? '0 0 12px rgba(0, 240, 255, 0.5)'
+                  ? '0 0 12px var(--glow-accent)'
                   : '0 2px 6px rgba(0, 0, 0, 0.15)',
                 transition: 'left 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
                 zIndex: 1,
@@ -151,7 +151,7 @@ export const Navbar = () => {
                 justifyContent: 'center',
                 width: '28px',
                 height: '26px',
-                color: isDark ? '#00f0ff' : 'var(--text-muted)',
+                color: isDark ? 'var(--accent-primary)' : 'var(--text-muted)',
               }}
             >
               <Moon size={14} strokeWidth={2.4} />
