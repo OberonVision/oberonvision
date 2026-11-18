@@ -1,5 +1,4 @@
 import { ThemeProvider } from './context/ThemeContext';
-import CustomCursor from './components/CustomCursor';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
@@ -16,7 +15,6 @@ import MobileBottomNav from './components/MobileBottomNav';
 export const App = () => {
   return (
     <ThemeProvider>
-      <CustomCursor />
       <Navbar />
       <main>
         <Hero />

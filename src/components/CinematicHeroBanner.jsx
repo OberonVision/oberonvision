@@ -1,5 +1,4 @@
 import { useRef, useEffect, useState } from 'react';
-import { Volume2, VolumeX, Play, Pause } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 export const CinematicHeroBanner = () => {
@@ -7,9 +6,8 @@ export const CinematicHeroBanner = () => {
   const videoRef = useRef(null);
   const containerRef = useRef(null);
 
-  // Playback state
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
+  // Track whether video has ended (shows replay state)
+  const [hasEnded, setHasEnded] = useState(false);
 
   // Mouse parallax position (only enabled on non-touch devices for maximum mobile performance)
   const mouseRef = useRef({ x: 0, y: 0, targetX: 0, targetY: 0 });
@@ -64,14 +62,18 @@ export const CinematicHeroBanner = () => {
 
     const startPlay = () => {
       video.muted = true;
-      setIsMuted(true);
       const promise = video.play();
       if (promise !== undefined) {
-        promise
-          .then(() => setIsPlaying(true))
-          .catch(() => setIsPlaying(false));
+        promise.catch(() => {});
       }
     };
+
+    // Freeze frame when video ends
+    const handleEnded = () => {
+      setHasEnded(true);
+    };
+
+    video.addEventListener('ended', handleEnded);
 
     // Pause video when out of viewport to preserve mobile GPU/battery
     const observer = new IntersectionObserver(
@@ -79,10 +81,8 @@ export const CinematicHeroBanner = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             video.play().catch(() => {});
-            setIsPlaying(true);
           } else {
             video.pause();
-            setIsPlaying(false);
           }
         });
       },
@@ -97,32 +97,17 @@ export const CinematicHeroBanner = () => {
 
     return () => {
       observer.disconnect();
+      video.removeEventListener('ended', handleEnded);
     };
   }, []);
 
-  // Play / Pause toggle
-  const handleTogglePlay = (e) => {
-    if (e) e.stopPropagation();
+  // Click anywhere on video to replay from start
+  const handleVideoClick = () => {
     const video = videoRef.current;
     if (!video) return;
-
-    if (video.paused) {
-      video.play().then(() => setIsPlaying(true)).catch(() => {});
-    } else {
-      video.pause();
-      setIsPlaying(false);
-    }
-  };
-
-  // Audio Toggle
-  const handleToggleMute = (e) => {
-    if (e) e.stopPropagation();
-    const video = videoRef.current;
-    if (!video) return;
-
-    const nextMuted = !isMuted;
-    video.muted = nextMuted;
-    setIsMuted(nextMuted);
+    video.currentTime = 0;
+    setHasEnded(false);
+    video.play().catch(() => {});
   };
 
   return (
@@ -130,6 +115,7 @@ export const CinematicHeroBanner = () => {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onClick={handleVideoClick}
       className="cinematic-hero-wrapper hero-banner-media"
       style={{
         position: 'relative',
@@ -145,6 +131,7 @@ export const CinematicHeroBanner = () => {
         perspective: '1000px',
         transform: 'translateZ(0)',
         transition: 'box-shadow 0.4s ease',
+        cursor: hasEnded ? 'pointer' : 'default',
       }}
     >
       {/* ------------------------------------------------------------- */}
@@ -155,8 +142,7 @@ export const CinematicHeroBanner = () => {
         src="/assets/banner.mp4"
         poster="/assets/frame_9.8.png"
         autoPlay
-        loop
-        muted={isMuted}
+        muted={true}
         playsInline
         preload="metadata"
         disablePictureInPicture
@@ -205,82 +191,12 @@ export const CinematicHeroBanner = () => {
         }}
       />
 
-      {/* ------------------------------------------------------------- */}
-      {/* TOUCH-FRIENDLY CONTROLS (MUTE & PLAY/PAUSE)                  */}
-      {/* ------------------------------------------------------------- */}
-      <div
-        className="banner-controls-strip"
-        style={{
-          position: 'absolute',
-          top: '14px',
-          right: '14px',
-          zIndex: 10,
-          display: 'flex',
-          alignItems: 'center',
-          gap: '8px',
-        }}
-      >
-        {/* Play/Pause Button */}
-        <button
-          onClick={handleTogglePlay}
-          title={isPlaying ? 'Pause Background Video' : 'Play Background Video'}
-          aria-label={isPlaying ? 'Pause Background Video' : 'Play Background Video'}
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '36px',
-            height: '36px',
-            borderRadius: '50%',
-            background: 'rgba(5, 10, 8, 0.75)',
-            backdropFilter: 'blur(10px)',
-            WebkitBackdropFilter: 'blur(10px)',
-            border: '1px solid var(--border-color)',
-            color: 'var(--accent-primary)',
-            cursor: 'pointer',
-            boxShadow: '0 4px 14px rgba(0, 0, 0, 0.6)',
-            transition: 'all 0.2s ease',
-          }}
-        >
-          {isPlaying ? <Pause size={14} /> : <Play size={14} style={{ marginLeft: '2px' }} />}
-        </button>
-
-        {/* Audio Mute/Unmute Button */}
-        <button
-          onClick={handleToggleMute}
-          title={isMuted ? 'Unmute Audio' : 'Mute Audio'}
-          aria-label={isMuted ? 'Unmute Audio' : 'Mute Audio'}
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '36px',
-            height: '36px',
-            borderRadius: '50%',
-            background: 'rgba(5, 10, 8, 0.75)',
-            backdropFilter: 'blur(10px)',
-            WebkitBackdropFilter: 'blur(10px)',
-            border: '1px solid var(--border-color)',
-            color: isMuted ? 'rgba(255, 255, 255, 0.7)' : 'var(--accent-primary)',
-            cursor: 'pointer',
-            boxShadow: '0 4px 14px rgba(0, 0, 0, 0.6)',
-            transition: 'all 0.2s ease',
-          }}
-        >
-          {isMuted ? <VolumeX size={14} /> : <Volume2 size={14} />}
-        </button>
-      </div>
-
       {/* Responsive Styles tailored for Split Column & Mobile View */}
       <style>{`
         @media (max-width: 768px) {
           .cinematic-hero-wrapper {
             aspect-ratio: 16 / 9 !important;
             border-radius: 16px !important;
-          }
-          .banner-controls-strip {
-            top: 10px !important;
-            right: 10px !important;
           }
         }
       `}</style>
